@@ -1,4 +1,1 @@
-Financial Institution = null
-Customers = null
- Location = null
-Country = null
+fiName=null, customers=null, location=null, country=null
