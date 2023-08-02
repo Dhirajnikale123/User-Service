@@ -50,17 +50,6 @@ public class UserServiceImplTest {
 		
 	}
 	
-//	@Test
-//	public void getFilesTest() throws IOException
-//	{
-//		String toGetFileFrom = "C:/Users/nikdh/OneDrive/Desktop/New folder/";
-//		String fileName = "example.pdf";
-//		File f = new File(toGetFileFrom+fileName);
-//		List<File> result = userServiceimpl.getAllFiles(fileName);
-//		assertEquals(result.get(0).getName(),"example.pdf");
-//
-//	}
-	
 	@Test
 	public void deleteFileTest() throws IOException
 	{
