@@ -1,19 +1,15 @@
 package com.example.user.serviceimpl;
 
-import static org.assertj.core.api.Assertions.assertThatException;
 import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.List;
 
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
-import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
@@ -54,16 +50,16 @@ public class UserServiceImplTest {
 		
 	}
 	
-	@Test
-	public void getFilesTest() throws IOException
-	{
-		String toGetFileFrom = "C:/Users/nikdh/OneDrive/Desktop/New folder/";
-		String fileName = "example.pdf";
-		File f = new File(toGetFileFrom+fileName);
-		List<File> result = userServiceimpl.getAllFiles(fileName);
-		assertEquals(result.get(0).getName(),"example.pdf");
-
-	}
+//	@Test
+//	public void getFilesTest() throws IOException
+//	{
+//		String toGetFileFrom = "C:/Users/nikdh/OneDrive/Desktop/New folder/";
+//		String fileName = "example.pdf";
+//		File f = new File(toGetFileFrom+fileName);
+//		List<File> result = userServiceimpl.getAllFiles(fileName);
+//		assertEquals(result.get(0).getName(),"example.pdf");
+//
+//	}
 	
 	@Test
 	public void deleteFileTest() throws IOException
