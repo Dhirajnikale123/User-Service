@@ -4,6 +4,7 @@ import java.io.File;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.example.user.dto.FinancialInstitutionDto;
 
@@ -15,5 +16,7 @@ public interface UserService {
 	List<File> getAllFiles(String path);
 
 	String createFile(FinancialInstitutionDto fiDto);
+
+	String uploadFile(MultipartFile multipartFile);
 
 }
