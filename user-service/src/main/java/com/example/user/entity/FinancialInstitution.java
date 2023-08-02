@@ -62,12 +62,11 @@ public class FinancialInstitution {
 	}
 
 	public FinancialInstitution(Integer id, String bank, Integer customers, String country, String location) {
-		super();
 		this.id = id;
-		Bank = bank;
-		Customers = customers;
-		Country = country;
-		Location = location;
+		this.Bank = bank;
+		this.Customers = customers;
+		this.Country = country;
+		this.Location = location;
 	}
 
 	public FinancialInstitution() {

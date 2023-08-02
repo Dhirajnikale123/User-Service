@@ -1,21 +1,18 @@
 package com.example.user.service;
 
-import java.io.File;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.example.user.dto.FinancialInstitutionDto;
+import com.example.user.entity.FinancialInstitution;
 
 @Service
 public interface UserService {
 	
-	String deleteFile(String filename);
+	String deleteFile(Integer id);
 
-	List<File> getAllFiles(String path);
-
-	String createFile(FinancialInstitutionDto fiDto);
+	List<FinancialInstitution> getAllFiles();
 
 	String uploadFile(MultipartFile multipartFile);
 
