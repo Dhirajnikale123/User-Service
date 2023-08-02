@@ -24,12 +24,6 @@ public class UserController {
 	@Autowired
 	UserService userService;
 
-	@PostMapping("/upload")
-	public String uploadFile(@RequestParam String filePath){
-		String result = userService.uploadFile(filePath);
-		return result;
-	}
-	
 	@PostMapping("/create")
 	public String createFile(@RequestBody FinancialInstitutionDto fiDto){
 		String result = userService.createFile(fiDto);

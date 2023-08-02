@@ -43,38 +43,26 @@ public class UserControllerTest {
 						+ "    \"location\":\"TestLocation\",\r\n" + "    \"country\":\"TestCountry\"\r\n" + "}")
 				.accept(MediaType.APPLICATION_JSON_VALUE)).andReturn();
 	}
-	
+
 	@Test
 	public void deleteFileTest() throws Exception {
 		String uri = "/user/delete";
 		String filename = "test.txt";
 		Mockito.when(userService.deleteFile(filename)).thenReturn("Deleted Successfully");
-		
+
 		mockMvc.perform(MockMvcRequestBuilders.delete(uri).contentType(MediaType.APPLICATION_JSON_VALUE)
-				.param("filename", "example.txt")
-				.accept(MediaType.APPLICATION_JSON_VALUE)).andReturn();
+				.param("filename", "example.txt").accept(MediaType.APPLICATION_JSON_VALUE)).andReturn();
 	}
-	
+
 	@Test
 	public void getFilesTest() throws Exception {
 		String uri = "/user/getAll";
 		String path = "../searchFolder/";
 		List<File> listOfFiles = new ArrayList<File>();
 		Mockito.when(userService.getAllFiles(path)).thenReturn(listOfFiles);
-		
+
 		mockMvc.perform(MockMvcRequestBuilders.get(uri).contentType(MediaType.APPLICATION_JSON_VALUE)
-				.param("path", "../searchFolder/")
-				.accept(MediaType.APPLICATION_JSON_VALUE)).andReturn();
+				.param("path", "../searchFolder/").accept(MediaType.APPLICATION_JSON_VALUE)).andReturn();
 	}
-	
-	@Test
-	public void uploadFileTest() throws Exception {
-		String uri = "/user/upload";
-		String path = "../searchFolder/";
-		Mockito.when(userService.uploadFile(path)).thenReturn("File uploaded");
-		
-		mockMvc.perform(MockMvcRequestBuilders.post(uri).contentType(MediaType.APPLICATION_JSON_VALUE)
-				.param("filePath", "../searchFolder/")
-				.accept(MediaType.APPLICATION_JSON_VALUE)).andReturn();
-	}
+
 }

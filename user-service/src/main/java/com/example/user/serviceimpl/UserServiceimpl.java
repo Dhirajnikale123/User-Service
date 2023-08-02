@@ -1,12 +1,7 @@
 package com.example.user.serviceimpl;
 
-import java.io.BufferedWriter;
 import java.io.File;
-import java.io.FileWriter;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.time.format.DateTimeFormatter;
+import java.io.FileOutputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,6 +10,12 @@ import org.springframework.stereotype.Service;
 import com.example.user.customException.BusinessException;
 import com.example.user.dto.FinancialInstitutionDto;
 import com.example.user.service.UserService;
+import com.itextpdf.text.BaseColor;
+import com.itextpdf.text.Chunk;
+import com.itextpdf.text.Document;
+import com.itextpdf.text.Font;
+import com.itextpdf.text.FontFactory;
+import com.itextpdf.text.pdf.PdfWriter;
 
 @Service
 public class UserServiceimpl implements UserService {
@@ -22,20 +23,21 @@ public class UserServiceimpl implements UserService {
 	String DIR_TO_UPLOAD = "C:/Users/nikdh/OneDrive/Desktop/New folder/";
 	String DIR_TO_PICK_FILE = "C:/Users/nikdh/OneDrive/Desktop/PickFileFrom/TestFile.pdf";
 
-	public String uploadFile(String filePath) {
-
+	public String createFile(FinancialInstitutionDto fiDto) {
 		try {
-			Path pdfPath = Paths.get(DIR_TO_PICK_FILE);
-			byte[] bytes = Files.readAllBytes(pdfPath);
-			DateTimeFormatter timeStampPattern = DateTimeFormatter.ofPattern("yyyyMMddHHmmss");
-			Path path = Paths.get(
-					DIR_TO_UPLOAD + timeStampPattern.format(java.time.LocalDateTime.now()) + pdfPath.getFileName());
-			Files.write(path, bytes);
-		} catch (Exception e) {
-			throw new BusinessException("500", "Failed to Upload file");
-		}
+			Document document = new Document();
+			PdfWriter.getInstance(document, new FileOutputStream(DIR_TO_UPLOAD + "example.pdf"));
+			document.open();
+			Font font = FontFactory.getFont(FontFactory.COURIER, 12, BaseColor.BLACK);
+			Chunk chunk = new Chunk(fiDto.toString(), font);
 
-		return "File uploaded";
+			document.add(chunk);
+			document.close();
+		} catch (Exception e) {
+			throw new BusinessException("400", e.getMessage());
+		}
+		return "New File Created Successfully";
+
 	}
 
 	public String deleteFile(String fileName) {
@@ -58,21 +60,6 @@ public class UserServiceimpl implements UserService {
 			}
 		}
 		return listOfFiles;
-	}
-
-	public String createFile(FinancialInstitutionDto fiDto) {
-		BufferedWriter output = null;
-		try {
-			File file = new File(DIR_TO_UPLOAD + "example.pdf");
-			output = new BufferedWriter(new FileWriter(file));
-			output.write(fiDto.toString());
-			output.close();
-		}
-		catch (Exception e) {
-			throw new BusinessException("400", e.getMessage());
-		}
-		return "New File Created Successfully";
-
 	}
 
 }

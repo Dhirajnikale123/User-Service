@@ -52,12 +52,12 @@ public class FinancialInstitutionDto {
 	
 	
 
+
+
 	@Override
 	public String toString() {
-		return "Financial Institution = " + fiName +"\n"
-				+ "Customers = " + customers+"\n"
-				+" Location = " + location+"\n"
-				+ "Country = " + country;
+		return "fiName=" + fiName + ", customers=" + customers + ", location=" + location
+				+ ", country=" + country ;
 	}
 
 	public FinancialInstitutionDto() {
