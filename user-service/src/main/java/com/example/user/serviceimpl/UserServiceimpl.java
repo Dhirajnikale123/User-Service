@@ -1,7 +1,5 @@
 package com.example.user.serviceimpl;
 
-import java.io.ByteArrayOutputStream;
-import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,22 +9,21 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.example.user.api.ExternalApi;
 import com.example.user.customException.BusinessException;
+import com.example.user.dto.MockApiDto;
 import com.example.user.entity.FinancialInstitution;
 import com.example.user.repo.FinancialInstitutionRepo;
 import com.example.user.service.UserService;
-import com.itextpdf.text.Document;
-import com.itextpdf.text.Element;
-import com.itextpdf.text.pdf.PdfWriter;
 
 @Service
 public class UserServiceimpl implements UserService {
 
-	String DIR_TO_UPLOAD = "C:/Users/nikdh/OneDrive/Desktop/New folder/";
-	String DIR_TO_PICK_FILE = "C:/Users/nikdh/OneDrive/Desktop/PickFileFrom/TestFile.pdf";
-
 	@Autowired
 	FinancialInstitutionRepo fiRepo;
+
+	@Autowired
+	ExternalApi externalApi;
 
 	public String deleteFile(Integer id) {
 		try {
@@ -77,6 +74,17 @@ public class UserServiceimpl implements UserService {
 			throw new BusinessException("400", "Bad Request");
 		}
 		return listOfFi;
+	}
+
+	@Override
+	public List<MockApiDto> getMockApiData(Integer postId) {
+		List<MockApiDto> list = new ArrayList<MockApiDto>();
+		try {
+			list = externalApi.getMockDataList(postId);
+		} catch (Exception e) {
+			throw new BusinessException("400", "Bad Request");
+		}
+		return list;
 	}
 
 }

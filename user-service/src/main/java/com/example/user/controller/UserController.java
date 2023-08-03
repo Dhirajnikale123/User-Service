@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.example.user.dto.MockApiDto;
 import com.example.user.entity.FinancialInstitution;
 import com.example.user.service.UserService;
 import com.example.user.utility.UserPDFreport;
@@ -52,6 +53,14 @@ public class UserController {
 		listOfFi = userService.getAllFiles();
 		UserPDFreport exporter = new UserPDFreport(listOfFi);
 		exporter.export(response);
+	}
+
+	@GetMapping("/getByPost/{postId}")
+	public List<MockApiDto> getByPostId(@PathVariable("postId") Integer postId) {
+		List<MockApiDto> listOfMockApi = new ArrayList<MockApiDto>();
+		listOfMockApi = userService.getMockApiData(postId);
+
+		return listOfMockApi;
 	}
 
 }

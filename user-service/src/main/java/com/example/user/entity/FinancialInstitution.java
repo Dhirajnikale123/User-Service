@@ -21,6 +21,7 @@ public class FinancialInstitution {
 	
 	private String Location;
 
+
 	public Integer getId() {
 		return id;
 	}
