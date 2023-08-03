@@ -29,7 +29,7 @@ public class UserPDFreport {
 
 	private void writeTableHeader(PdfPTable table) {
 		PdfPCell cell = new PdfPCell();
-		cell.setPadding(10);
+		cell.setPadding(5);
 		Font font = FontFactory.getFont(FontFactory.HELVETICA);
 		cell.setPhrase(new Phrase("Bank Id", font));
 		cell.setPhrase(new Phrase("Bank Name", font));
